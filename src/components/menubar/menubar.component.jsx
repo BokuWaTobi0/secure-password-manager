@@ -1,51 +1,46 @@
-import { Fragment, useState } from 'react';
+import { Link, Outlet } from 'react-router-dom';
+import { FaLock, FaUser, FaKey, FaShieldAlt, FaList, FaPlus, FaInfoCircle } from 'react-icons/fa';
 import './menubar.styles.scss';
-import { Outlet } from 'react-router-dom';
-import HomeSvg from '../../assets/password-svgrepo-com.svg'
-import { RiAiGenerate,RiLockPasswordLine,RiKeyFill } from "react-icons/ri";
-import { MdOutlineAssessment,MdOutlinePublic  } from "react-icons/md";
-import { CgDatabase } from "react-icons/cg";
-import { FaUserAstronaut } from 'react-icons/fa6';
-import { useNavigate } from 'react-router-dom';
-import { BiHealth } from "react-icons/bi";
-
-const navIcons=[RiKeyFill,BiHealth,RiAiGenerate,MdOutlineAssessment,RiLockPasswordLine,CgDatabase,MdOutlinePublic];
-const nameArray=['All passwords','Password Health','Generate passwords','Check password strength','Access Methods','Add passwords','Info docs'];
-
 
 const Menubar = () => {
-    const [page,setPage]=useState('');
-    const router = useNavigate();
+  return (
+    <div className="layout">
+      <nav className="sidebar">
+        <div className="logo">
+          <FaLock className="logo-icon" />
+          <h1>SecurePass</h1>
+        </div>
+        
+        <div className="nav-links">
+          <Link to="/dashboard" className="nav-item">
+            <FaShieldAlt /> Dashboard
+          </Link>
+          <Link to="/dashboard/all-passwords" className="nav-item">
+            <FaList /> All Passwords
+          </Link>
+          <Link to="/dashboard/generate-passwords" className="nav-item">
+            <FaKey /> Generate Password
+          </Link>
+          <Link to="/dashboard/add-passwords" className="nav-item">
+            <FaPlus /> Add Password
+          </Link>
+          <Link to="/dashboard/password-health" className="nav-item">
+            <FaShieldAlt /> Password Health
+          </Link>
+          <Link to="/dashboard/user" className="nav-item">
+            <FaUser /> Profile
+          </Link>
+          <Link to="/dashboard/info-docs" className="nav-item">
+            <FaInfoCircle /> Info & Docs
+          </Link>
+        </div>
+      </nav>
+      
+      <main className="main-content">
+        <Outlet />
+      </main>
+    </div>
+  );
+};
 
-    const handleNavIconClick=(name)=>{
-        const route = name.replace(/\s/g,'-').toLowerCase();
-        router(route)
-        setPage(name)
-    }
-
-    return ( 
-        <Fragment>
-            <div className='menubar-div'>
-            <div className='m-logo' onClick={()=>router('dashboard')}>
-                    <img src={HomeSvg} />
-                    <span>SPM</span>
-                </div>
-                <div className='navs'>
-                    {navIcons.map((Icon,index)=>{
-                        return <div className='icon' key={`menubar-icons-${index}`} onClick={()=>handleNavIconClick(nameArray[index])} style={{backgroundColor:page === nameArray[index] ? 'ghostwhite' :'',color:page === nameArray[index] ? 'black' :''}}>
-                            <Icon title={nameArray[index]} />
-                        </div>
-                    })}
-                </div>
-                <div className='user-pic' onClick={()=>router('user')}>
-                    <FaUserAstronaut/>
-                </div>
-            </div>
-            <div className='container'>
-            <Outlet/>
-            </div>
-        </Fragment>
-     );
-}
- 
 export default Menubar;

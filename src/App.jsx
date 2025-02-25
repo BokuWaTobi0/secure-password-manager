@@ -19,6 +19,7 @@ import AddPasswords from './routes/add-passwords/add-passwords.component';
 import AccessMethods from './routes/access-methods/access-methods.component';
 import InfoDocs from "./routes/info-docs/info-docs.component";
 import PasswordEntry from "./routes/password-entry/password-entry.component";
+import './styles/global.scss';
 
 
 const ProtectedRoute = ({ children }) => {

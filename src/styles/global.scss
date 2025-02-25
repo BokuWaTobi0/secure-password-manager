@@ -1,0 +1,81 @@
+@use './variables' as *;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --primary: #2C3333;
+  --secondary: #395B64;
+  --accent: #00FFC6;
+  --background: #1A1A1A;
+  --surface: #2D2D2D;
+  --text-primary: #FFFFFF;
+  --text-secondary: #A0A0A0;
+  --error: #FF4444;
+  --success: #00C853;
+  --warning: #FFB300;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text-primary);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.card {
+  background-color: var(--surface);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &-primary {
+    background-color: var(--accent);
+    color: var(--primary);
+    &:hover {
+      background-color: darken(#00FFC6, 10%);
+    }
+  }
+
+  &-secondary {
+    background-color: var(--secondary);
+    color: var(--text-primary);
+    &:hover {
+      background-color: darken(#395B64, 10%);
+    }
+  }
+}
+
+.input-field {
+  background-color: var(--surface);
+  border: 1px solid var(--secondary);
+  color: var(--text-primary);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  width: 100%;
+  margin-bottom: 1rem;
+
+  &:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+} 
