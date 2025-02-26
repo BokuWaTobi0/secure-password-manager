@@ -1,0 +1,70 @@
+// Main Colors
+$primary: #FFFFFF;
+$secondary: #6C63FF;
+$accent: #FF3366;
+$background: #F8F9FE;
+$surface: #FFFFFF;
+
+// Text Colors
+$text-primary: #2D3748;
+$text-secondary: #718096;
+
+// Status Colors
+$error: #FF4E4E;
+$success: #00D9A6;
+$warning: #FFB800;
+$info: #3B82F6;
+
+// Gradient Colors
+$gradient-1: linear-gradient(135deg, #FF3366 0%, #FF6B6B 100%);
+$gradient-2: linear-gradient(135deg, #6C63FF 0%, #3B82F6 100%);
+$gradient-3: linear-gradient(135deg, #00D9A6 0%, #00F5D4 100%);
+$gradient-4: linear-gradient(135deg, #FFB800 0%, #FF8A00 100%);
+$gradient-5: linear-gradient(45deg, #FF3366 0%, #6C63FF 50%, #00D9A6 100%);
+
+// Glass Effects
+$glass-background: rgba(255, 255, 255, 0.9);
+$glass-border: rgba(255, 255, 255, 0.3);
+$glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+
+// Neon Effects
+$neon-primary: 0 0 20px rgba(255, 51, 102, 0.3);
+$neon-secondary: 0 0 20px rgba(108, 99, 255, 0.3);
+$neon-success: 0 0 20px rgba(0, 217, 166, 0.3);
+$neon-warning: 0 0 20px rgba(255, 184, 0, 0.3);
+
+// Spacing
+$spacing-xs: 0.25rem;
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+
+// Breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+// Border radius
+$border-radius-sm: 8px;
+$border-radius-md: 12px;
+$border-radius-lg: 20px;
+$border-radius-full: 9999px;
+
+// Transitions
+$transition-speed: 0.3s;
+$transition-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+$transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+
+// Shadows
+$shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+$shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+$shadow-glow: 0 0 20px rgba(255, 51, 102, 0.2);
+
+// Card Effects
+$card-border: 1px solid rgba(108, 99, 255, 0.1);
+$card-hover-transform: translateY(-5px);
+$card-background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(248, 249, 254, 0.9)); 
+

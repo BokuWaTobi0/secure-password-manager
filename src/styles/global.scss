@@ -1,17 +1,18 @@
-@use './variables' as *;
+@use 'variables' as *;
+@use 'mixins' as *;
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --primary: #2C3333;
-  --secondary: #395B64;
-  --accent: #00FFC6;
-  --background: #1A1A1A;
-  --surface: #2D2D2D;
-  --text-primary: #FFFFFF;
-  --text-secondary: #A0A0A0;
-  --error: #FF4444;
-  --success: #00C853;
-  --warning: #FFB300;
+  --primary: #{$primary};
+  --secondary: #{$secondary};
+  --accent: #{$accent};
+  --background: #{$background};
+  --surface: #{$surface};
+  --text-primary: #{$text-primary};
+  --text-secondary: #{$text-secondary};
+  --error: #{$error};
+  --success: #{$success};
+  --warning: #{$warning};
 }
 
 * {
@@ -22,60 +23,186 @@
 }
 
 body {
-  background-color: var(--background);
+  background: $background;
   color: var(--text-primary);
+  min-height: 100vh;
+  background-image: 
+    radial-gradient(circle at 20% 20%, rgba(108, 99, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 51, 102, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(0, 217, 166, 0.1) 0%, transparent 50%);
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: $spacing-md;
+  position: relative;
 }
 
 .card {
-  background-color: var(--surface);
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1rem;
+  background: $card-background;
+  border-radius: $border-radius-lg;
+  padding: $spacing-lg;
+  box-shadow: $shadow-md;
+  margin-bottom: $spacing-lg;
+  border: $card-border;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.3s $transition-bounce;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: $gradient-5;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover {
+    transform: $card-hover-transform;
+    box-shadow: $shadow-lg;
+
+    &::before {
+      opacity: 1;
+    }
+  }
 }
 
 .btn {
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $border-radius-md;
   border: none;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s $transition-bounce;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+
+  &:hover::before {
+    transform: translateX(100%);
+  }
 
   &-primary {
-    background-color: var(--accent);
-    color: var(--primary);
+    background: $gradient-1;
+    color: white;
+    box-shadow: $neon-primary;
+
     &:hover {
-      background-color: darken(#00FFC6, 10%);
+      transform: translateY(-2px);
+      box-shadow: 0 0 25px rgba($accent, 0.3);
     }
   }
 
   &-secondary {
-    background-color: var(--secondary);
-    color: var(--text-primary);
+    background: $gradient-2;
+    color: white;
+    box-shadow: $neon-secondary;
+
     &:hover {
-      background-color: darken(#395B64, 10%);
+      transform: translateY(-2px);
+      box-shadow: 0 0 25px rgba($secondary, 0.3);
+    }
+  }
+
+  &-success {
+    background: $gradient-3;
+    color: white;
+    box-shadow: $neon-success;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 25px rgba($success, 0.3);
+    }
+  }
+
+  &-warning {
+    background: $gradient-4;
+    color: white;
+    box-shadow: $neon-warning;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 25px rgba($warning, 0.3);
     }
   }
 }
 
 .input-field {
-  background-color: var(--surface);
-  border: 1px solid var(--secondary);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba($secondary, 0.2);
   color: var(--text-primary);
-  padding: 0.75rem 1rem;
-  border-radius: 8px;
+  padding: $spacing-md;
+  border-radius: $border-radius-md;
   width: 100%;
-  margin-bottom: 1rem;
+  margin-bottom: $spacing-md;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.3s $transition-smooth;
 
   &:focus {
     outline: none;
-    border-color: var(--accent);
+    border-color: $secondary;
+    box-shadow: 0 0 0 3px rgba($secondary, 0.1);
+    transform: translateY(-1px);
   }
+
+  &:hover {
+    border-color: $secondary;
+    box-shadow: 0 0 15px rgba($secondary, 0.1);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba($surface, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: $gradient-2;
+  border-radius: $border-radius-full;
+  
+  &:hover {
+    background: $gradient-1;
+  }
+}
+
+::selection {
+  background: rgba($accent, 0.2);
+  color: $text-primary;
+}
+
+@keyframes gradient-animation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.glass-effect {
+  background: $glass-background;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid $glass-border;
+  box-shadow: $glass-shadow;
 } 

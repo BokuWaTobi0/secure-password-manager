@@ -1,42 +1,45 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import { FaLock, FaUser, FaKey, FaShieldAlt, FaList, FaPlus, FaInfoCircle } from 'react-icons/fa';
 import './menubar.styles.scss';
 
 const Menubar = () => {
+  const location = useLocation();
+
+  const navItems = [
+    { path: '/dashboard', icon: <FaShieldAlt />, label: 'Dashboard' },
+    { path: '/dashboard/all-passwords', icon: <FaList />, label: 'Passwords' },
+    { path: '/dashboard/generate-passwords', icon: <FaKey />, label: 'Generate' },
+    { path: '/dashboard/add-passwords', icon: <FaPlus />, label: 'Add' },
+    { path: '/dashboard/password-health', icon: <FaShieldAlt />, label: 'Health' },
+    { path: '/dashboard/info-docs', icon: <FaInfoCircle />, label: 'Info' },
+  ];
+
   return (
-    <div className="layout">
-      <nav className="sidebar">
-        <div className="logo">
-          <FaLock className="logo-icon" />
-          <h1>SecurePass</h1>
+    <div className="container">
+      <div className="menubar-div">
+        <Link to="/dashboard" className="m-logo">
+          <FaLock />
+          <span>SecurePass</span>
+        </Link>
+        
+        <div className="navs">
+          {navItems.map((item) => (
+            <Link
+              key={item.path}
+              to={item.path}
+              className={location.pathname === item.path ? 'active' : ''}
+            >
+              {item.icon}
+            </Link>
+          ))}
         </div>
         
-        <div className="nav-links">
-          <Link to="/dashboard" className="nav-item">
-            <FaShieldAlt /> Dashboard
-          </Link>
-          <Link to="/dashboard/all-passwords" className="nav-item">
-            <FaList /> All Passwords
-          </Link>
-          <Link to="/dashboard/generate-passwords" className="nav-item">
-            <FaKey /> Generate Password
-          </Link>
-          <Link to="/dashboard/add-passwords" className="nav-item">
-            <FaPlus /> Add Password
-          </Link>
-          <Link to="/dashboard/password-health" className="nav-item">
-            <FaShieldAlt /> Password Health
-          </Link>
-          <Link to="/dashboard/user" className="nav-item">
-            <FaUser /> Profile
-          </Link>
-          <Link to="/dashboard/info-docs" className="nav-item">
-            <FaInfoCircle /> Info & Docs
-          </Link>
-        </div>
-      </nav>
+        <Link to="/dashboard/user" className="user-pic">
+          <FaUser />
+        </Link>
+      </div>
       
-      <main className="main-content">
+      <main>
         <Outlet />
       </main>
     </div>
